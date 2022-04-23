@@ -1,0 +1,24 @@
+const { Builder, By, until } = require('selenium-webdriver');
+const BasePage = require('../pageObject/basePage');
+
+class BaseElements extends BasePage {
+    constructor() {
+        super();
+    }
+
+    async click(element, waitTime){
+        await driver.wait(until.elementIsVisible(element), waitTime);
+        await element.click();
+    }
+
+    async sendKeys(element, text, waitTime = 5000) {
+        await driver.wait(until.elementIsVisible(element), waitTime);
+        await element.sendKeys(text);
+    }
+    async getTextValue(element,waitTime=2000) {
+        await driver.wait(until.elementIsVisible(element), waitTime);
+        await element.getText();
+    }
+}
+
+module.exports = BaseElements
